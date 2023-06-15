@@ -5,21 +5,8 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-set(THIS_PACKAGE_INCLUDE_DEPENDS
-  generate_parameter_library
-  rclcpp
-)
-
-# find dependencies
 find_package(ament_cmake REQUIRED)
-foreach(Dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
-  find_package(${Dependency} REQUIRED)
-endforeach()
-
-generate_parameter_library(
-  parameter_test_parameters # cmake target name for the parameter library
-  src/parameter_test.yaml # path to input yaml file
-)
+find_package(rclcpp REQUIRED)
 
 add_executable(${PROJECT_NAME}
   src/parameter_test.cpp
@@ -28,12 +15,7 @@ add_executable(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME} PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
-target_link_libraries(${PROJECT_NAME} parameter_test_parameters)
-ament_target_dependencies(
-  ${PROJECT_NAME}
-  ${THIS_PACKAGE_INCLUDE_DEPENDS}
-)
-
+target_link_libraries(${PROJECT_NAME} rclcpp::rclcpp)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

@@ -1,9 +1,0 @@
-parameter_test:
-  test_double: {
-    type: double,
-    read_only: false,
-    default_value: 0.000001,
-    description: "Test double",
-    validation: {
-    }
-  }

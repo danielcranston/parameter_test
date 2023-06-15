@@ -4,12 +4,11 @@
   <name>parameter_test</name>
   <version>0.0.0</version>
   <description>Parameter test</description>
-  <maintainer email=""></maintainer>
+  <maintainer email="foo@bar.com"></maintainer>
   <license>Proprietary</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>generate_parameter_library</depend>
   <depend>rclcpp</depend>
 
   <export>

@@ -4,9 +4,13 @@
 class ParameterTest : public rclcpp::Node
 {
 public:
-  explicit ParameterTest(const rclcpp::NodeOptions & options) : Node("param_test", options)
+  explicit ParameterTest(const rclcpp::NodeOptions &options) : Node("param_test", options)
   {
-    this->declare_parameter("test_double", 0.0);
+    std::string test_string1 = this->declare_parameter<std::string>("test_string1", "default string1");
+    RCLCPP_INFO_STREAM(get_logger(), "test_string1 is " << test_string1);
+
+    std::string test_string2 = this->declare_parameter<std::string>("test_string2", "default string1");
+    RCLCPP_INFO_STREAM(get_logger(), "test_string2 is " << test_string2);
   }
 
   ~ParameterTest() = default;
@@ -14,7 +18,7 @@ public:
 private:
 };
 
-int main(int argc, char ** argv)
+int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
 

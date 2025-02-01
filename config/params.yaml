@@ -1,3 +1,4 @@
-param_test:
+ParamTest:
   ros__parameters:
-      test_double: 5e-06
+      test_string1: '123E5' # This works, but launch_ros.action.Node never writes temporary YAML files like this
+      test_string2: 123E5   # Throws - what():  parameter 'test_string2' has invalid type: Wrong parameter type, parameter {test_string2} is of type {string}, setting it to {double} is not allowed.

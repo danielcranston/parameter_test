@@ -6,11 +6,8 @@ class ParameterTest : public rclcpp::Node
 public:
   explicit ParameterTest(const rclcpp::NodeOptions &options) : Node("param_test", options)
   {
-    std::string test_string1 = this->declare_parameter<std::string>("test_string1", "default string1");
-    RCLCPP_INFO_STREAM(get_logger(), "test_string1 is " << test_string1);
-
-    std::string test_string2 = this->declare_parameter<std::string>("test_string2", "default string1");
-    RCLCPP_INFO_STREAM(get_logger(), "test_string2 is " << test_string2);
+    std::string param = this->declare_parameter<std::string>("param", "node-defaulted param");
+    RCLCPP_INFO_STREAM(get_logger(), "param is " << param);
   }
 
   ~ParameterTest() = default;
